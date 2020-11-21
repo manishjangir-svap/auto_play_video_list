@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View" />
+
+        <variable
+            name="thumbnailUrl"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.exoplayer2.ui.PlayerView
+            android:id="@+id/player_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/black"
+            app:controller_layout_id="@layout/exo_player_basic_custom_controller"
+            app:layout_constraintDimensionRatio="w, 1:1.8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:scaleType="centerCrop"
+            android:visibility="@{ thumbnailUrl == null ? View.GONE : View.VISIBLE, default = gone}"
+            app:layout_constraintBottom_toBottomOf="@id/player_view"
+            app:layout_constraintEnd_toEndOf="@id/player_view"
+            app:layout_constraintStart_toStartOf="@id/player_view"
+            app:layout_constraintTop_toTopOf="@id/player_view"
+            app:thumbnailUrl="@{ thumbnailUrl }"
+            tools:ignore="ContentDescription" />
+
+        <ImageView
+            android:id="@+id/play_media_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_round_play_arrow"
+            android:visibility="@{ thumbnailUrl == null ? View.GONE : View.VISIBLE, default = gone}"
+            app:layout_constraintBottom_toBottomOf="@id/player_view"
+            app:layout_constraintEnd_toEndOf="@id/player_view"
+            app:layout_constraintStart_toStartOf="@id/player_view"
+            app:layout_constraintTop_toTopOf="@id/player_view"
+            app:tint="@color/white"
+            tools:ignore="ContentDescription" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
